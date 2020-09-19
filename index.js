@@ -9,7 +9,11 @@ app.use(cors())
 app.use(morgan("common"))
 app.use(express.json())
 
-app.use("/", barkRoute)
+app.use("/barks",(req,res)=>{
+    res.json({
+        "message": "WTF"
+    })
+})
 
 
 

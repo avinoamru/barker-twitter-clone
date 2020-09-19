@@ -2,10 +2,10 @@
   "name": "barker-api",
   "version": "1.0.0",
   "description": "Barker is a twitter clone for dogs",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",

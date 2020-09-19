@@ -4,14 +4,17 @@ const joi = require("joi");
 const db = monk(process.env.MONGO_URI);
 const barksCollection = db.get("barks");
 
-router.get("/", async (req, res, next) => {
-    try{
-        const barks = await barksCollection.find();
-        return res.json(barks)
+router.get("/",  (req, res, next) => {
+    res.json({
+        "message": "Hello fucking vercel!"
+    })
+    // try{
+    //     const barks = await barksCollection.find();
+    //     return res.json(barks)
 
-    }catch(err){
-        next(err)
-    }
+    // }catch(err){
+    //     next(err)
+    // }
 
 });
 
