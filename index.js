@@ -9,8 +9,8 @@ app.use(cors())
 app.use(morgan("common"))
 app.use(express.json())
 
-app.use("/barks",(req,res)=>{
-    res.json({
+app.use("/",(req,res)=>{
+   return res.json({
         "message": "WTF"
     })
 })
