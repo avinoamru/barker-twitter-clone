@@ -9,7 +9,7 @@ app.use(cors())
 app.use(morgan("common"))
 app.use(express.json())
 
-app.get("/",barkRoute);
+app.use("/",barkRoute);
 
 
 
