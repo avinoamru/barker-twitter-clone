@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const morgan = require('morgan');
 require('dotenv').config();
-const barkRoute = require('./barkRoute');
+// const barkRoute = require('./barkRoute');
 
 app.use(cors())
 app.use(morgan("common"))
