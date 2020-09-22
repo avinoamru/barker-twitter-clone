@@ -7,18 +7,18 @@ const barksCollection = db.get("barks");
 const barkSchema = joi.object({
     name: joi.string().trim().required(),
     content: joi.string().trim().required(),
-    date: joi.string().trim().required()
+    date: joi.object()
 })
 
 router.get("/", async (req, res, next) => {
 
     try {
         const barks = await barksCollection.find();
+        console.log(barks.length)
         return res.json(barks)
     } catch (err) {
         next(err)
     }
-
 });
 
 router.post("/bark", async (req, res, next) => {
@@ -26,8 +26,10 @@ router.post("/bark", async (req, res, next) => {
         const { name, content } = req.body
         const bark = {
             name: name.toString(),
-            content: content.toString()
+            content: content.toString(),
+            date: [{"string": new Date()},{"milliseconds":  Date.now()}]
         }
+
         if (barkSchema.validateAsync(bark)) {
             const insertedBark = await barksCollection.insert(bark)
             return res.json(insertedBark)
