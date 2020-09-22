@@ -9,13 +9,7 @@ app.use(cors())
 app.use(morgan("common"))
 app.use(express.json())
 
-app.use("/",barkRoute);
-
-
-
-
-
-
+app.use("/", barkRoute);
 
 const port = process.env.PORT || 9090;
 app.listen(port, () => {

@@ -10,59 +10,47 @@ const barkSchema = joi.object({
     date: joi.string().trim().required()
 })
 
-
 router.get("/", async (req, res, next) => {
-   
-    try{
+
+    try {
         const barks = await barksCollection.find();
         return res.json(barks)
-
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 
 });
 
-router.post("/bark", async (req,res,next)=>{
-    try{
-        const {name,content} = req.body
+router.post("/bark", async (req, res, next) => {
+    try {
+        const { name, content } = req.body
         const bark = {
             name: name.toString(),
             content: content.toString()
         }
-
-        if(barkSchema.validateAsync(bark)){
+        if (barkSchema.validateAsync(bark)) {
             const insertedBark = await barksCollection.insert(bark)
             return res.json(insertedBark)
-        }else next(err)
-
-    } catch(err){
+        } else next(err)
+    } catch (err) {
         next(err);
     }
-
 })
 
-
-router.delete("/bark/:id", async (req,res,next)=>{
-    try{
-        const {id} = req.params
-
-        
+router.delete("/bark/:id", async (req, res, next) => {
+    try {
+        const { id } = req.params
         const deletedBark = await barksCollection.findOne({
             "_id": id
         })
-        
-
-       await barksCollection.remove({
-            "_id":id
+        await barksCollection.remove({
+            "_id": id
         })
-
         return res.json({
             "deleted": deletedBark
-            
         })
 
-    } catch(err){
+    } catch (err) {
         next(err)
     }
 })
